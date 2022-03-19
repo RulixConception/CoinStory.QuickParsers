@@ -1,0 +1,1 @@
+CoinStory.QuickParsers
