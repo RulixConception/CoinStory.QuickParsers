@@ -1,0 +1,6 @@
+[submodule "CoinStory.Models"]
+	path = CoinStory.Models
+	url = https://github.com/RulixConception/CoinStory.Models.git
+[submodule "QuickParser"]
+	path = QuickParser
+	url = https://github.com/RulixConception/QuickParser.git

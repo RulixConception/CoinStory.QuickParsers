@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\QuickParser\QuickParser.csproj" />
-    <ProjectReference Include="..\CoinStory.Models\CoinStory.Models.csproj" />
+    <ProjectReference Include="CoinStory.Models\CoinStory.Models.csproj" />
+    <ProjectReference Include="QuickParser\QuickParser.csproj" />
   </ItemGroup>
 
 </Project>
