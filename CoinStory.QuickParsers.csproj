@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CoinStory.Models\**" />
+    <Compile Remove="QuickParser\**" />
+    <EmbeddedResource Remove="CoinStory.Models\**" />
+    <EmbeddedResource Remove="QuickParser\**" />
+    <None Remove="CoinStory.Models\**" />
+    <None Remove="QuickParser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
