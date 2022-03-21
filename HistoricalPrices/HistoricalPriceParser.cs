@@ -1,9 +1,6 @@
 ﻿using CoinStory.Models.Enumerations;
 using CoinStory.Models.Interfaces;
 using QuickParser.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CoinStory.Core.QuickParsers.HistoricalPrices
 {
@@ -17,7 +14,7 @@ namespace CoinStory.Core.QuickParsers.HistoricalPrices
 
         }
 
-        protected override List<IHistoricalPrice> PostProcessing(IEnumerable<IHistoricalPrice> objects)
+        protected override IList<IHistoricalPrice> PostProcessing(IEnumerable<IHistoricalPrice> objects)
         {
             return objects.Where(o => o.Currency != Currency.USD).ToList();
         }

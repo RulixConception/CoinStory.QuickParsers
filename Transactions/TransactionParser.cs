@@ -14,7 +14,7 @@ namespace CoinStory.Core.QuickParsers.Transactions
 
         }
 
-        protected override List<ITransaction> PostProcessing(IEnumerable<ITransaction> transactions)
+        protected override IList<ITransaction> PostProcessing(IEnumerable<ITransaction> transactions)
         {
             return transactions.Where(t => t.Type != TransactionType.Ignore).ToList();
         }
