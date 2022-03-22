@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.Transactions.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.Transactions;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using System.Text.RegularExpressions;
@@ -17,7 +18,7 @@ namespace CoinStory.Core.QuickParsers.Transactions.Parsers
 
         protected override int HeaderRowIndex => 7;
 
-        protected override IParsedRowMapping<ITransaction> Mapping => new TransactionMap<ITransaction>
+        protected override IParsedRowMapping<Transaction> Mapping => new TransactionMap<Transaction>
         {
             DateMap = new ColumnMap<DateTime>(TIMESTAMP, ConvertDate),
             AmountOutMap = new ColumnMap<decimal>(QUANTITY, (value, row) => row[TYPE] switch

@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.Transactions.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.Transactions;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using static CoinStory.Core.QuickParsers.Transactions.ColumnDefs.NetcoinsColumn;
@@ -12,7 +13,7 @@ namespace CoinStory.Core.QuickParsers.Transactions.Parsers
     {
         protected override Platform Platform => Platform.Netcoins;
 
-        protected override IParsedRowMapping<ITransaction> Mapping => new TransactionMap<ITransaction>
+        protected override IParsedRowMapping<Transaction> Mapping => new TransactionMap<Transaction>
         {
             DateMap = new ColumnMap<DateTime>(CREATED_AT, (value) => ConvertDate(value, "UTC-11")), // Looks like UTC-11 timezone somehow
             AmountOutMap = new ColumnMap<decimal>(INCREASE_AMOUNT, ConvertAmount),

@@ -1,10 +1,10 @@
-﻿using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+﻿using CoinStory.Models;
+using CoinStory.Models.Enumerations;
 using QuickParser.Classes;
 
-namespace CoinStory.Core.QuickParsers.Transactions
+namespace CoinStory.QuickParsers.Transactions
 {
-    public abstract class TransactionParser<TColumnDef> : ParserBase<ITransaction, TColumnDef>
+    public abstract class TransactionParser<TColumnDef> : ParserBase<Transaction, TColumnDef>
         where TColumnDef : struct, IConvertible
     {
         protected abstract Platform Platform { get; }
@@ -14,11 +14,10 @@ namespace CoinStory.Core.QuickParsers.Transactions
 
         }
 
-        protected override IList<ITransaction> PostProcessing(IEnumerable<ITransaction> transactions)
-        {
-            return transactions.Where(t => t.Type != TransactionType.Ignore).ToList();
-        }
+        protected override IList<Transaction> PostProcessing(IEnumerable<Transaction> transactions) =>
+            transactions.Where(t => t.Type != TransactionType.Ignore).ToList();
 
-        protected override object[] GetParams() => new object[] { Platform };
+        protected override Transaction OnInstantiate() =>
+            new Transaction { Platform = Platform, };
     }
 }

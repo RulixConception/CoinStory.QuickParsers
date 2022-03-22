@@ -1,10 +1,10 @@
-﻿using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+﻿using CoinStory.Models;
+using CoinStory.Models.Enumerations;
 using QuickParser.Classes;
 
-namespace CoinStory.Core.QuickParsers.HistoricalPrices
+namespace CoinStory.QuickParsers.HistoricalPrices
 {
-    public abstract class HistoricalPriceParser<TColumnDef> : ParserBase<IHistoricalPrice, TColumnDef>
+    public abstract class HistoricalPriceParser<TColumnDef> : ParserBase<HistoricalPrice, TColumnDef>
         where TColumnDef : struct, IConvertible
     {
         protected abstract HistoricalDataSource Source { get; }
@@ -14,11 +14,10 @@ namespace CoinStory.Core.QuickParsers.HistoricalPrices
 
         }
 
-        protected override IList<IHistoricalPrice> PostProcessing(IEnumerable<IHistoricalPrice> objects)
-        {
-            return objects.Where(o => o.Currency != Currency.USD).ToList();
-        }
+        protected override IList<HistoricalPrice> PostProcessing(IEnumerable<HistoricalPrice> objects) =>
+            objects.Where(o => o.Currency != Currency.USD).ToList();
 
-        protected override object[] GetParams() => new object[] { Source };
+        protected override HistoricalPrice OnInstantiate() =>
+            new HistoricalPrice { Source = Source };
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.HistoricalPrices.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.HistoricalPrices;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using static CoinStory.Core.QuickParsers.HistoricalPrices.ColumnDefs.CoinGeckoColumn;
@@ -14,7 +15,7 @@ namespace CoinStory.Core.QuickParsers.HistoricalPrices.Parsers
 
         protected override HistoricalDataSource Source => HistoricalDataSource.CoinGecko;
 
-        protected override IParsedRowMapping<IHistoricalPrice> Mapping => new HistoricalPriceMap<IHistoricalPrice>
+        protected override IParsedRowMapping<HistoricalPrice> Mapping => new HistoricalPriceMap<HistoricalPrice>
         {
             DateMap = new ColumnMap<DateTime>(SNAPPED_AT, (date) => ConvertDate(date.Replace("UTC", ""), "UTC")),
             CurrencyMap = new ColumnMap<Currency>((_) => _currency),

@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.Transactions.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.Transactions;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using static CoinStory.Core.QuickParsers.Transactions.ColumnDefs.ShakepayColumn;
@@ -12,7 +13,7 @@ namespace CoinStory.Core.QuickParsers.Transactions.Parsers
     {
         protected override Platform Platform => Platform.Shakepay;
 
-        protected override IParsedRowMapping<ITransaction> Mapping => new TransactionMap<ITransaction>
+        protected override IParsedRowMapping<Transaction> Mapping => new TransactionMap<Transaction>
         {
             DateMap = new ColumnMap<DateTime>(DATE, ConvertDate),
             AmountOutMap = new ColumnMap<decimal>(AMOUNT_CREDITED, ConvertAmount),

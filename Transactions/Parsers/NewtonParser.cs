@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.Transactions.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.Transactions;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using static CoinStory.Core.QuickParsers.Transactions.ColumnDefs.NewtonColumn;
@@ -12,7 +13,7 @@ namespace CoinStory.Core.QuickParsers.Transactions.Parsers
     {
         protected override Platform Platform => Platform.Newton;
 
-        protected override IParsedRowMapping<ITransaction> Mapping => new TransactionMap<ITransaction>
+        protected override IParsedRowMapping<Transaction> Mapping => new TransactionMap<Transaction>
         {
             DateMap = new ColumnMap<DateTime>(DATE, (value) => ConvertDate(value, "Eastern Standard Time")),
             AmountOutMap = new ColumnMap<decimal>(RECEIVED_QUANTITY, ConvertAmount),

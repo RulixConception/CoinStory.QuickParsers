@@ -1,6 +1,7 @@
 ﻿using CoinStory.Core.QuickParsers.Transactions.ColumnDefs;
+using CoinStory.Models;
 using CoinStory.Models.Enumerations;
-using CoinStory.Models.Interfaces;
+using CoinStory.QuickParsers.Transactions;
 using QuickParser.Classes;
 using QuickParser.Interfaces;
 using static CoinStory.Core.QuickParsers.Transactions.ColumnDefs.NexoColumn;
@@ -19,7 +20,7 @@ namespace CoinStory.Core.QuickParsers.Transactions.Parsers
         // 2. The 'USD Equivalent' column of transaction NXTaNvsG9zHEy was manually changed from '$36.89' to '$37.38'
         //    This was done because the USD Equivalent is the amount converted to USD which isn't the actual 'AmountIn' value
         // *************************************************************
-        protected override IParsedRowMapping<ITransaction> Mapping => new TransactionMap<ITransaction>
+        protected override IParsedRowMapping<Transaction> Mapping => new TransactionMap<Transaction>
         {
             IdentifierMap = new ColumnMap<string>(TRANSACTION),
             DateMap = new ColumnMap<DateTime>(DATE, (value) => ConvertDate(value, "Central European Standard Time")), // Time uses CEST timezone
