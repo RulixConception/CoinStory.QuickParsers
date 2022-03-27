@@ -27,7 +27,6 @@ namespace CoinStory.Core.QuickParsers.HistoricalPrices
         {
             instance.Date = DateMap?.GetValue(row) ?? new DateTime();
             instance.Currency = CurrencyMap?.GetValue(row) ?? Currency.USD;
-            instance.Source = parameters?[0] as HistoricalDataSource? ?? HistoricalDataSource.Unknown;
             instance.Open = OpenMap?.GetValue(row) ?? 0;
             instance.High = HighMap?.GetValue(row) ?? 0;
             instance.Low = LowMap?.GetValue(row) ?? 0;

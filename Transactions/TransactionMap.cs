@@ -30,7 +30,6 @@ namespace CoinStory.Core.QuickParsers.Transactions
 
         public TObject Map(ParsedRow row, TObject instance, params object[] parameters)
         {
-            instance.Platform = parameters[0] as Platform? ?? Platform.Binance;
             instance.Identifier = IdentifierMap?.GetValue(row) ?? "";
             instance.Date = DateMap?.GetValue(row) ?? new DateTime();
             instance.AmountIn = AmountInMap?.GetValue(row) ?? 0;
